@@ -3,27 +3,35 @@ using UnityEngine;
 public class BulletBehavior : MonoBehaviour
 {
     [Header("Pengaturan Peluru")]
-    public float lifeTime = 3f; // Peluru hancur otomatis dalam 3 detik
+    public float damage = 25f; // Jumlah damage yang diberikan peluru
+    public float lifeTime = 3f;
     public float hitForce = 150f;
 
     void Start()
     {
-        // Menghancurkan peluru ini otomatis setelah waktu lifeTime habis
         Destroy(gameObject, lifeTime);
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Jika menabrak objek yang memiliki Rigidbody, berikan gaya dorong
+        // 1. Cek apakah objek yang ditabrak memiliki komponen EnemyAI
+        EnemyAI hitEnemy = collision.gameObject.GetComponent<EnemyAI>();
+
+        // 2. Jika iya (berarti peluru mengenai musuh), berikan damage
+        if (hitEnemy != null)
+        {
+            hitEnemy.TakeDamage(damage);
+        }
+
+        // 3. Efek dorongan fisik (opsional, jika musuh punya Rigidbody)
         Rigidbody targetRb = collision.gameObject.GetComponent<Rigidbody>();
         if (targetRb != null)
         {
-            // Menghitung arah pantulan berdasarkan titik tabrakan
             Vector3 pushDirection = collision.contacts[0].normal;
             targetRb.AddForce(-pushDirection * hitForce);
         }
 
-        // Hancurkan peluru segera setelah menabrak sesuatu
+        // 4. Hancurkan peluru setelah menabrak
         Destroy(gameObject);
     }
 }
