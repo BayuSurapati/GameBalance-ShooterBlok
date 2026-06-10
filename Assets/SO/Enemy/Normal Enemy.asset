@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb55ad6cdb4081429ee6cc4203f70bf, type: 3}
+  m_Name: Normal Enemy
+  m_EditorClassIdentifier: 
+  enemyID: ENM_02
+  enemyName: Enemy Normal
+  enemyPrefab: {fileID: 722715265305139459, guid: 120863e0a90989045b92b3ca4b0bc11c, type: 3}
+  maxHealth: 200
+  moveSpeed: 2
+  attackDamage: 5
+  dropItems:
+  - itemName: Ammo_5
+    itemPrefab: {fileID: 2815820610405494741, guid: 7075167b8630d3148b3332ea75ae0b5d, type: 3}
+    dropChance: 30
+  - itemName: Ammo_10
+    itemPrefab: {fileID: 2815820610405494741, guid: 9c4cfb7f77208aa4aa8d5c106d6acf4c, type: 3}
+    dropChance: 60
+  - itemName: Ammo_15
+    itemPrefab: {fileID: 2815820610405494741, guid: a9951dabd8a2f6b4f8e3525613b1ca2d, type: 3}
+    dropChance: 10
+  - itemName: Grenade_1
+    itemPrefab: {fileID: 2815820610405494741, guid: 20996e00b2b2a5c48abb434f615baa6a, type: 3}
+    dropChance: 10
+  - itemName: Grenade_2
+    itemPrefab: {fileID: 2815820610405494741, guid: 4e86ce7b202abce45bb29a62adc49952, type: 3}
+    dropChance: 30

@@ -1,16 +1,30 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [Header("Referensi")]
+    [Header("Referensi Sistem")]
     public Camera fpsCamera;
     public InputActionReference fireAction;
-    public Transform shootPoint;    // Tempat peluru keluar
-    public GameObject bulletPrefab; // Prefab peluru yang akan ditembakkan
+    public Transform shootPoint;
+    public GameObject bulletPrefab;
+
+    // Variabel baru untuk mengakses isi tas pemain
+    private PlayerInventory inventory;
 
     [Header("Pengaturan Senjata")]
-    public float bulletSpeed = 20f; // Kecepatan peluru
+    public float bulletSpeed = 50f;
+
+    void Start()
+    {
+        // Mengambil komponen PlayerInventory yang menempel pada objek Player yang sama
+        inventory = GetComponent<PlayerInventory>();
+
+        if (inventory == null)
+        {
+            Debug.LogWarning("PlayerInventory tidak ditemukan pada objek Player!");
+        }
+    }
 
     void OnEnable()
     {
@@ -26,16 +40,22 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shoot(InputAction.CallbackContext context)
     {
-        // 1. Memunculkan peluru di posisi dan rotasi ShootPoint
-        GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
-
-        // 2. Mengambil komponen Rigidbody dari peluru tersebut
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (inventory != null && inventory.currentAmmo > 0)
         {
-            // 3. Memberikan kecepatan pada peluru agar melesat lurus 
-            // mengikuti arah pandangan kamera (tengah layar)
-            rb.velocity = fpsCamera.transform.forward * bulletSpeed;
+            // Panggil fungsi UseAmmo untuk mengurangi peluru & update UI
+            inventory.UseAmmo();
+
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+            if (rb != null)
+            {
+                rb.velocity = fpsCamera.transform.forward * bulletSpeed;
+            }
+        }
+        else
+        {
+            Debug.Log("💥 Peluru Habis! Cepat cari Ammo Box!");
         }
     }
 }

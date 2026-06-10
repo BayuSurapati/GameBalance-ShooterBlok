@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.006, y: 0.62, z: 0.795}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 760bfda57e5973b4d8a1f223d01fb1ac, type: 2}
+  - {fileID: 2100000, guid: dc0aa961cae8ad447a41f03dab0eb291, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,4 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0242e5c0f1208ff46b3195d7472f45e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myData: {fileID: 11400000, guid: 4565e943ef20f834586a95b6b9ce853b, type: 2}
+  myData: {fileID: 11400000, guid: 9721a599731df0149963cdeea8aa4710, type: 2}
+  attackRate: 1
+  attackRange: 5
